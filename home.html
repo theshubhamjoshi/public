@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Page Title -->
+    <title>Amritha</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style >
+        form { 
+        border: 3px solid #f1f1f1; 
+        } 
+
+        input[type=text], input[type=password] { 
+        width: 100%; 
+        padding: 12px 20px; 
+        margin: 8px 0; 
+        display: inline-block; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; 
+        } 
+
+        button { 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 14px 20px; 
+        margin: 8px 0; 
+        border: none; 
+        cursor: pointer; 
+        width: 100%; 
+        } 
+
+        button:hover { 
+        opacity: 0.8; 
+        } 
+
+        .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px; 
+        background-color: #f44336; 
+        } 
+
+        .imgcontainer { 
+        text-align: center; 
+        margin: 24px 0 12px 0; 
+        } 
+
+        img.avatar { 
+        width: 40%; 
+        border-radius: 50%; 
+        } 
+
+        .container { 
+        padding: 16px; 
+        } 
+
+        span.psw { 
+        float: right; 
+        padding-top: 16px; 
+        } 
+
+        @media screen and (max-width: 300px) { 
+        span.psw { 
+           display: block; 
+           float: none; 
+        } 
+        .cancelbtn { 
+           width: 100%; 
+        } 
+        } 
+        </style> 
+    </style>
+</head>
+<body onload="getLogin()">
+    <!-- Preloader Starts -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Header Area Starts -->
+    <header class="header-area">
+        <div id="header" id="home">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="index.html"><img src="assets/images/logo/logo.png" alt="" title="" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <li><a id="username"></a></li>
+                        <li><a href="fetchEmergencies.html">Emergencies</a></li>	
+                        <li><a href="#" onclick="logout()">Logout</a></li>		          				          
+                    </ul>
+                </nav><!-- #nav-menu-container -->		    		
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <div style="padding-top: 200px; text-align: center; display: none" id="firstTime"><label style="color: #4CAF50;font-size: 40px"><b>Looks Like You Just Signed Up.</b></label></div>
+    <div style="padding-top: 0px; text-align: center; display: none" id="firstTime1"><label style="color: #4CAF50;font-size: 40px"><b>Lets Get You Started</b></label></div>
+    
+      <div style="padding-top: 200px; text-align: center;" id="names"><label style="color: black;font-size: 20px"><b>Hospital Name</b></label></div>
+     <center><input type="text" align="center" name="Hospital_name" style=" text-align: center; width: 400px" id="hospital_name" disabled=""></center>
+
+    <div style="padding-top: 20px; text-align: center;"><label style="color: black;font-size: 20px"><b>Blood Availability</b></label></div>
+
+    <div style="padding-top: 20px;text-align: center;">
+
+
+        <button style="width: 100px; background-color: orange" id="bloodA+" onclick="onBloodSelect(document.getElementById('bloodA+'))">A+</button>
+        <button style="width: 100px;background-color: orange" background-color: green" id="bloodA-" onclick="onBloodSelect(document.getElementById('bloodA-'))">A-</button>
+        <button style="width: 100px; background-color: orange" background-color: green" id="bloodB+" onclick="onBloodSelect(document.getElementById('bloodB+'))">B+</button>
+        <button style="width: 100px; background-color: orange" background-color: green" id="bloodB-" onclick="onBloodSelect(document.getElementById('bloodB-'))">B-</button>
+        <button style="width: 100px ; background-color: orange" background-color: green" id="bloodAB+" onclick="onBloodSelect(document.getElementById('bloodAB+'))">AB+</button>
+        <button style="width: 100px; background-color: orange" background-color: green" id="bloodAB-" onclick="onBloodSelect(document.getElementById('bloodAB-'))">AB-</button>
+        <button style="width: 100px; background-color: orange" background-color: green" id="bloodO+" onclick="onBloodSelect(document.getElementById('bloodO+'))">O+</button>
+        <button style="width: 100px; background-color: orange" background-color: green" id="bloodO-" onclick="onBloodSelect(document.getElementById('bloodO-'))">O-</button>
+
+       
+    </div>
+
+     <div style="padding-top: 0px; text-align: center;"><label style="color: black;font-size: 20px"><b>Contact Number</b></label></div>
+     <center><input type="text" name="Hospital_name" style="%; width:400px ; text-align: center;" id="hcontact" required></center>
+
+     <div style="padding-top: 0px; text-align: center;"><label style="color: black;font-size: 20px"><b>Ambulance Number</b></label></div>
+     <center><input type="text" name="Hospital_name" style="%; width: 400px;text-align: center;" id="acontact" required></center>
+
+     <div style="padding-top: 0px; text-align: center;"><label style="color: black;font-size: 20px"><b>Facilities Available</b></label></div>
+
+     <center>
+     <button style="width: 150px; background-color: orange" background-color: green" id="Ambulance" onclick="onFacilitiesSelect(document.getElementById('Ambulance'))">Ambulance</button>
+
+    <button style="width: 200px; background-color: orange" background-color: green" id="Outpatient" onclick="onFacilitiesSelect(document.getElementById('Outpatient'))">Outpatient</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="ChildBirth" onclick="onFacilitiesSelect(document.getElementById('ChildBirth'))">Child Birth</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="BloodBank" onclick="onFacilitiesSelect(document.getElementById('BloodBank'))">Blood Bank</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Dialysis" onclick="onFacilitiesSelect(document.getElementById('Dialysis'))">Dialysis</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="XRay" onclick="onFacilitiesSelect(document.getElementById('XRay'))">X Ray</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="MRI" onclick="onFacilitiesSelect(document.getElementById('MRI'))">MRI</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="CTScan" onclick="onFacilitiesSelect(document.getElementById('CTScan'))">CT Scan</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Ultrasound" onclick="onFacilitiesSelect(document.getElementById('Ultrasound'))">Ultrasound</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="MentalHealth" onclick="onFacilitiesSelect(document.getElementById('MentalHealth'))">Mental Health</button>
+
+     </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <div style="padding-top: 0px; text-align: center;"><label style="color: black;font-size: 20px"><b>Doctors Available</b></label></div>
+     <center><input type="text" name="Hospital_name" style="%; width: 400px;text-align: center;" id="doctor" required></center>
+
+     <center><div id="doctorDetails"></div></center>
+     <center><button style="width: 200px; background-color: orange" background-color: green" id="addDoctor" onclick="Addnewdoctor()">+</button></center>
+
+
+
+
+
+
+
+     <div style="padding-top: 0px; text-align: center;"><label style="color: black;font-size: 20px"><b>Specialist Available</b></label></div>
+
+     <center>
+     <button style="width: 150px; background-color: orange" background-color: green" id="Allergist" onclick="onTreatmentSelect(document.getElementById('Allergist'))">Allergist</button>
+
+    <button style="width: 200px; background-color: orange" background-color: green" id="Cardiologist" onclick="onTreatmentSelect(document.getElementById('Cardiologist'))">Cardiologist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Dentist" onclick="onTreatmentSelect(document.getElementById('Dentist'))">Dentist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Dermatologist" onclick="onTreatmentSelect(document.getElementById('Dermatologist'))">Dermatologist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Gynecologist" onclick="onTreatmentSelect(document.getElementById('Gynecologist'))">Gynecologist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Immunologist" onclick="onTreatmentSelect(document.getElementById('Immunologist'))">Immunologist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Geneticist" onclick="onTreatmentSelect(document.getElementById('Geneticist'))">Geneticist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Microbiologist" onclick="onTreatmentSelect(document.getElementById('Microbiologist'))">Microbiologist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Neurologist" onclick="onTreatmentSelect(document.getElementById('Neurologist'))">Neurologist</button>
+     <button style="width: 200px; background-color: orange" background-color: green" id="Oncologist" onclick="onTreatmentSelect(document.getElementById('Oncologist'))">Oncologist (Cancer)</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="Orthopedic" onclick="onTreatmentSelect(document.getElementById('Orthopedic'))">Orthopedic</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="ENT" onclick="onTreatmentSelect(document.getElementById('ENT'))">ENT</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="Pediatrician" onclick="onTreatmentSelect(document.getElementById('Pediatrician'))">Pediatrician</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="Physiologist" onclick="onTreatmentSelect(document.getElementById('Physiologist'))">Physiologist </button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="PlasticSurgeon" onclick="onTreatmentSelect(document.getElementById('PlasticSurgeon'))">Plastic Surgeon</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="Psychiatrist" onclick="onTreatmentSelect(document.getElementById('Psychiatrist'))">Psychiatrist</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="Radiologist" onclick="onTreatmentSelect(document.getElementById('Radiologist'))">Radiologist</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="Surgeon" onclick="onTreatmentSelect(document.getElementById('Surgeon'))">Surgeon</button>
+
+     <button style="width: 200px; background-color: orange" background-color: green" id="Urologist" onclick="onTreatmentSelect(document.getElementById('Urologist'))">Urologist</button>
+
+     </center>
+
+
+
+
+     <div style="padding-top: 0px; text-align: center;"><label style="color: black;font-size: 20px"><b>State</b></label></div>
+     <center><input type="text" name="Hospital_name" style="%; width: 400px;text-align: center;" id="state" required disabled></center>
+      
+
+     
+  
+
+    <div style="padding-top: 0px; text-align: center;"><label style="color: black;font-size: 20px"><b>City</b></label></div>
+     <center><input type="text" name="Hospital_name" style="%; width: 400px;text-align: center;" id="city" required disabled></center>
+
+     <button onclick="addLocation()">Add Location</button>
+
+     <center><button style="width: 200px; background-color: orange" background-color: green" id="verify" onclick="sendRequest()">Request Verification</button></center>
+
+   
+    <button onclick="submit()">Submit</button>
+
+
+
+    
+    <!-- Footer Area Starts -->
+    <footer class="footer-area section-padding">
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4">top products</h3>
+                            <ul>
+                                <li class="mb-2"><a href="#">managed website</a></li>
+                                <li class="mb-2"><a href="#">managed reputation</a></li>
+                                <li class="mb-2"><a href="#">power tools</a></li>
+                                <li><a href="#">marketing service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 offset-xl-1 col-lg-6">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4">newsletter</h3>
+                            <p class="mb-4">You can trust us. we only send promo offers, not a single.</p>  
+                            <form action="#">
+                                <input type="email" placeholder="Your email here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email here'" required>
+                                <button type="submit" class="template-btn">subscribe now</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 offset-xl-1 col-lg-3">
+                        <div class="single-widge-home">
+                            <h3 class="mb-4">instagram feed</h3>
+                            <div class="feed">
+                                <img src="assets/images/feed1.jpg" alt="feed">
+                                <img src="assets/images/feed2.jpg" alt="feed">
+                                <img src="assets/images/feed3.jpg" alt="feed">
+                                <img src="assets/images/feed4.jpg" alt="feed">
+                                <img src="assets/images/feed5.jpg" alt="feed">
+                                <img src="assets/images/feed6.jpg" alt="feed">
+                                <img src="assets/images/feed7.jpg" alt="feed">
+                                <img src="assets/images/feed8.jpg" alt="feed">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <span>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="social-icons">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+
+    <!-- Javascript -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+    <script src="assets/js/vendor/wow.min.js"></script>
+    <script src="assets/js/vendor/owl-carousel.min.js"></script>
+    <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
+    <script src="assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="assets/js/vendor/superfish.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+<script type="text/javascript" src="firebase.js"></script>
+<script type="text/javascript" src="index_signup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.5.0/papaparse.min.js">
+</script>
+
+
+</html>

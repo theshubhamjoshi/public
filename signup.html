@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Page Title -->
+    <title>Amritha</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/linearicons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style> 
+        form { 
+        border: 3px solid #f1f1f1; 
+        } 
+
+        input[type=text], input[type=password] { 
+        width: 100%; 
+        padding: 12px 20px; 
+        margin: 8px 0; 
+        display: inline-block; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; 
+        } 
+
+        button { 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 14px 20px; 
+        margin: 8px 0; 
+        border: none; 
+        cursor: pointer; 
+        width: 100%; 
+        } 
+
+        button:hover { 
+        opacity: 0.8; 
+        } 
+
+        .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px; 
+        background-color: #f44336; 
+        } 
+
+        .imgcontainer { 
+        text-align: center; 
+        margin: 24px 0 12px 0; 
+        } 
+
+        img.avatar { 
+        width: 40%; 
+        border-radius: 50%; 
+        } 
+
+        .container { 
+        padding: 16px; 
+        } 
+
+        span.psw { 
+        float: right; 
+        padding-top: 16px; 
+        } 
+
+        @media screen and (max-width: 300px) { 
+        span.psw { 
+           display: block; 
+           float: none; 
+        } 
+        .cancelbtn { 
+           width: 100%; 
+        } 
+        } 
+        </style> 
+
+        
+</head>
+<body onload="checkLogin()">
+    <!-- Preloader Starts -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Preloader End -->
+
+        
+    <!-- Header Area Starts -->
+    <header class="header-area">
+        <div id="header" id="home">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href=""><img src="assets/images/logo/logo.png" alt="" title="" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <li><a href="login.html">Login</a></li>			          				          
+                    </ul>
+                </nav><!-- #nav-menu-container -->		    		
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    
+
+
+    <form style="padding-top: 200px;padding-bottom: 200px"> 
+      
+      <div class="container"> 
+        <label><b>Hospital Name</b></label> 
+        <input id="hospital_name" type="text" placeholder="Enter Hospital Name" name="uname" required> 
+
+        <label><b>Email</b></label> 
+        <input id="email" type="text" placeholder="Enter Hospital Email" name="uname" required> 
+
+        
+        <label><b>Password</b></label> 
+        <input id="password" type="password" placeholder="Enter Password" name="uname" required> 
+
+        <label><b>Confirm Password</b></label> 
+        <input id="cpassword" type="password" placeholder="Confirm Password" name="uname" required> 
+      
+
+        <label><b>State</b></label> 
+        <input id="state" type="text" placeholder="Enter State" name="uname" required> 
+
+        <label><b>City</b></label> 
+        <input id="city" type="text" placeholder="Enter City" name="uname" required> 
+        
+
+
+              
+        <button type="button" onclick="signUp()">Signup</button> 
+       
+      </div> 
+      
+      <div class="container" style="background-color:#f1f1f1"> 
+        <button type="button" class="cancelbtn">Cancel</button> 
+        <span class="psw">Forgot <a href="#">password?</a></span> 
+      </div> 
+    </form> 
+
+    <script>
+        var x = document.getElementById("latitude");
+        var y= document.getElementById("longitude");
+
+        /*if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position){
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var accuracy = position.coords.accuracy;
+            var coords = new google.maps.LatLng(latitude, longitude);
+            
+
+             x.innerHTML = "Latitude: " + position.coords.latitude;
+             y.innerHTML = "Longitude: " + position.coords.longitude;
+
+            },function error(msg){alert('Please enable your GPS position future.');  
+
+          }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
+
+        }else {
+            alert("Geolocation API is not supported in your browser.");
+        }*/
+          
+
+        function getAddress (lat, long) {
+
+            alert("get address called");
+
+          
+            return new Promise(function (resolve, reject) {
+                var request = new XMLHttpRequest();
+
+                var method = 'GET';
+                var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&sensor=true?key=AIzaSyCh98jqHwUDuXsXanXDwMvpjsupYlshkmw';
+                var async = true;
+
+                request.open(method, url, async);
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4) {
+                        if (request.status == 200) {
+                            var data = JSON.parse(request.responseText);
+                            var address = data.results[0];
+                            resolve(address);
+                        }
+                        else {
+                            reject(request.status);
+                        }
+                    }
+                };
+                request.send();
+            });
+        };
+    </script>
+
+  
+  
+    <!-- Footer Area Starts -->
+    <footer class="footer-area section-padding">
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4">top products</h3>
+                            <ul>
+                                <li class="mb-2"><a href="#">managed website</a></li>
+                                <li class="mb-2"><a href="#">managed reputation</a></li>
+                                <li class="mb-2"><a href="#">power tools</a></li>
+                                <li><a href="#">marketing service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 offset-xl-1 col-lg-6">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4">newsletter</h3>
+                            <p class="mb-4">You can trust us. we only send promo offers, not a single.</p>  
+                            <form action="#">
+                                <input type="email" placeholder="Your email here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email here'" required>
+                                <button type="submit" class="template-btn">subscribe now</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 offset-xl-1 col-lg-3">
+                        <div class="single-widge-home">
+                            <h3 class="mb-4">instagram feed</h3>
+                            <div class="feed">
+                                <img src="assets/images/feed1.jpg" alt="feed">
+                                <img src="assets/images/feed2.jpg" alt="feed">
+                                <img src="assets/images/feed3.jpg" alt="feed">
+                                <img src="assets/images/feed4.jpg" alt="feed">
+                                <img src="assets/images/feed5.jpg" alt="feed">
+                                <img src="assets/images/feed6.jpg" alt="feed">
+                                <img src="assets/images/feed7.jpg" alt="feed">
+                                <img src="assets/images/feed8.jpg" alt="feed">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <span>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="social-icons">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+
+    <!-- Javascript -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+    <script src="assets/js/vendor/wow.min.js"></script>
+    <script src="assets/js/vendor/owl-carousel.min.js"></script>
+    <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
+    <script src="assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="assets/js/vendor/superfish.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+<script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBo52bhS2_qaZPMeQyFYQP63Hm5B5yZpDQ",
+        authDomain: "sih2019-48005.firebaseapp.com",
+        databaseURL: "https://sih2019-48005.firebaseio.com",
+        projectId: "sih2019-48005",
+        storageBucket: "sih2019-48005.appspot.com",
+        messagingSenderId: "353248044994"
+      };
+      firebase.initializeApp(config);
+</script>
+<script type="text/javascript" src="index_signup.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+<script src="firebase.js"></script>
+
+
+
+
+</html>
